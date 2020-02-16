@@ -7,7 +7,7 @@
   <body>
     <form action="{% url 'pet-create' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            {{form}}
+            {{form|crispy}}
             <input type="submit" value="Create" class="btn btn-outline-success" >
         </form>
   </body>
