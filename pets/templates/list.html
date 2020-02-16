@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        {% for pet in pets %}
+          <a href ="{% url 'pet-detail' pet.id %}">
+              <img src="{{pet.image.url}}" ><br>
+              <h2>{{ pet.name }}</h2>
+              <h3>{{ pet.age}}</h3>
+              <br>
+
+          </a>
+        {% endfor %}
+
+        <a href= "{% url 'pet-create' %}">
+          <button type="button" name="Create">Create</button>
+        </a>
+
+    </body>
+    <div class="pagination">
+        <span class="step-links">
+            {% if pets.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ pets.previous_page_number }}">previous</a>
+            {% endif %}
+            <span class="current">
+                Page {{ pets.number }} of {{ pets.paginator.num_pages }}.
+            </span>
+            {% if pets.has_next %}
+                <a href="?page={{ pets.next_page_number }}">next</a>
+                <a href="?page={{ pets.paginator.num_pages }}">last &raquo;
+                </a>
+            {% endif %}
+        </span>
+    </div>
+</html>
